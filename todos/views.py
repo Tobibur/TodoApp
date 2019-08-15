@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Category, Todo
 from .serializers import CategorySerializer, TodoSerializer
@@ -10,11 +9,21 @@ def index(request):
     return HttpResponse("Hello, world!!")
 
 
-class ListCategories(generics.ListAPIView):
+class ListCreateCategories(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
 
-class ListTodo(generics.ListAPIView):
+class RetrieveUpdateDestroyCategory(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+
+class ListCreateTodo(generics.ListCreateAPIView):
+    queryset = Todo.objects.all()
+    serializer_class = TodoSerializer
+
+
+class RetrieveUpdateDestroyTodo(generics.RetrieveUpdateDestroyAPIView):
     queryset = Todo.objects.all()
     serializer_class = TodoSerializer
